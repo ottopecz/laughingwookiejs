@@ -1,0 +1,25 @@
+{
+  "name": "laughingwookiejs",
+  "version": "0.0.2",
+  "homepage": "https://github.com/ottopecz/laughingwookiejs",
+  "description": "Simple tool for behaviour driven unit testing in javascript",
+  "main": "laughingwookie.js",
+  "keywords": [
+    "javascript",
+    "unit-test",
+    "testing",
+    "behaviour-driven",
+    "behaviour"
+  ],
+  "authors": [
+    "Otto Pecz - otto.pecz@gmail.com"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
