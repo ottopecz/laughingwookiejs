@@ -52,6 +52,6 @@
     if ( typeof define === "function" && define.amd ) {
         define( "bdd", [], function () { return that; } );
     } else {
-        return that;
+        window.bdd = that;
     }
 }());
