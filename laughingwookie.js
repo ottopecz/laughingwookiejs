@@ -1,5 +1,4 @@
-/*global define*/
-define(function () {
+(function () {
     var that = Object.create({}),
         _chain = function () {
             var args = Array.prototype.slice.call(arguments),
@@ -52,7 +51,7 @@ define(function () {
 
     if ( typeof define === "function" && define.amd ) {
         define( "bdd", [], function () { return that; } );
+    } else {
+        return that;
     }
-
-    return that;
-});
+}());
