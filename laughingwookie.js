@@ -1,5 +1,5 @@
 (function () {
-    var that = Object.create({}),
+    var that = {},
         _chain = function () {
             var args = Array.prototype.slice.call(arguments),
                 ret;
