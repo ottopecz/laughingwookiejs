@@ -21,6 +21,8 @@
 
         this.given = _chain.apply(this, arguments);
 
+        this.when = this.given;
+
         return this;
     };
 
