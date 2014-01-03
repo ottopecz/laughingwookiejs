@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="laughingwookie.js"></script>
+
+    <script>
+
+        (function (bdd) {
+
+            var addNumber = function (result, number) {
+                return (result + number);
+            };
+
+            var equalsExpectedResult = function (result, expected) {
+                alert(result === expected);
+            };
+
+            var resultIsEvenNumber = function (result) {
+                alert(result % 2 === 0);
+            };
+
+            bdd()
+                .GIVEN(10)
+                    .AND(addNumber, 2)
+                    .AND(addNumber, 4)
+                .WHEN(addNumber, 6)
+                    .AND(addNumber, 10)
+                    .AND(addNumber, 16)
+                .THEN(equalsExpectedResult, 48)
+                    .AND(resultIsEvenNumber);
+
+        }(bdd));
+
+    </script>
+
+</head>
+<body>
+
+</body>
+</html>
