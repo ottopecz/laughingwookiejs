@@ -1,37 +1,44 @@
-(function (slice) {
+(function (root, slice) {
 
-    var isFunction = function (arg) {
-        return (typeof arg === 'function');
-    };
+    var
+        isFunction = function (arg) {
+            return (typeof arg === 'function');
+        },
 
-    var bdd = function () {
-        var _current;
-        var _block = function (func) {
-            var args = slice.call(arguments, 1);
-            var array = [_current].concat(args);
+        bdd = function () {
+            var _current,
+                _block = function (func) {
+                    var args = slice.call(arguments, 1);
+                    var array = [_current].concat(args);
 
-            _current = (func.apply(this, array) || _current);
+                    _current = (func.apply(this, array) || _current);
 
-            return this;
+                    return this;
+                };
+
+            return {
+                "GIVEN": function (arg) {
+                    var args = slice.call(arguments, 1);
+                    _current = (!isFunction(arg) ? arg : arg.apply(this, args));
+                    return this;
+                },
+                "WHEN": _block,
+                "THEN": _block,
+                "AND": _block
+            }
         };
 
-        return {
-            GIVEN: function (arg) {
-                var args = slice.call(arguments, 1);
-                _current = (!isFunction(arg) ? arg : arg.apply(this, args));
-                return this;
-            },
-            WHEN: _block,
-            THEN: _block,
-            AND: _block
-        }
-    };
-
-    if (typeof define === "function" && define.amd ) {
+    //expose
+    if (typeof module === 'object' && typeof define !== 'function') { // CommonJS
+        module.exports = bdd;
+    } else if (typeof define === "function" && define.amd ) { // AMD
         define("bdd", [], function () {
             return bdd;
         });
-    } else {
-        window.bdd = bdd;
+    } else { // browser global
+        root.bdd = bdd;
     }
-}(Array.prototype.slice));
+
+}(function () {
+    return this;
+}(), Array.prototype.slice));
