@@ -1,59 +1,41 @@
-(function () {
-    var that = {},
-        _chain = function () {
-            var args = Array.prototype.slice.call(arguments),
-                ret;
+(function (root, slice) {
+    "use strict";
 
-            if (args.length === 1) {
-                ret = args[0].call(this);
-            } else if (args.length === 2) {
-                ret = args[0].call(this, args[1]);
-            } else if (args.length === 3) {
-                ret = args[0].call(this, args[1], args[2]);
+    var
+        isFunction = function (arg) {
+            return (typeof arg === 'function');
+        },
+
+        bdd = function () {
+            var _current,
+                _block = function (func) {
+                    var args = slice.call(arguments, 1);
+                    var array = [_current].concat(args);
+                    _current = (func.apply(this, array) || _current);
+                    return this;
+                };
+
+            return {
+                "GIVEN": function (arg) {
+                    var args = slice.call(arguments, 1);
+                    _current = (!isFunction(arg) ? arg : arg.apply(this, args));
+                    return this;
+                },
+                "WHEN": _block,
+                "THEN": _block,
+                "AND": _block
             }
-
-            return ret;
         };
 
-    that.GIVEN = function () {
-
-        this.plus = [];
-
-        this.given = _chain.apply(this, arguments);
-
-        this.when = this.given;
-
-        return this;
-    };
-
-    that.PLUS = function () {
-
-        this.plus.push(_chain.apply(this, arguments));
-
-        return this;
-    };
-
-    that.WHEN = function () {
-
-        this.when = _chain.apply(this, arguments);
-
-        return this;
-    };
-
-    that.THEN = function () {
-
-        _chain.apply(this, arguments);
-
-        return this;
-    };
-
-    that.AND = function () {
-        return this.THEN.apply(this, arguments);
-    };
-
-    if ( typeof define === "function" && define.amd ) {
-        define( "bdd", [], function () { return that; } );
-    } else {
-        window.bdd = that;
+    //expose
+    if (typeof module === 'object' && typeof define !== 'function') { // CommonJS
+        module.exports = bdd;
+    } else if (typeof define === "function" && define.amd ) { // AMD
+        define("bdd", [], function () {
+            return bdd;
+        });
+    } else { // browser global
+        root.bdd = bdd;
     }
-}());
+
+}(this, Array.prototype.slice));
