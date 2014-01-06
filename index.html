@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="laughingwookie.js"></script>
+    <script>
+
+        var anObject = {
+            "value": 0
+        };
+
+        var addingNumberToObjectValue = function (object, number) {
+            object.value += number;
+        };
+
+        // Provided callback to asynchronously continue the tests
+        var userClicksOnDocument = function (start) {
+            document.onclick = function () {
+                // Arguments will be passed to THEN callback
+                start(1, 2, 3);
+            };
+
+            // start can also be invoked with
+            // bddObject.execute(1, 2, 3);
+        };
+
+        var logArguments = function () {
+            console.log(arguments);
+        };
+
+        var printObjectValueValue = function (object) {
+            console.log(object.value);
+        };
+
+        // creating an async tst object
+        bdd.async()
+
+            .GIVEN(anObject)
+                .AND(addingNumberToObjectValue, 1)
+                .AND(addingNumberToObjectValue, 2)
+                .AND(printObjectValueValue)
+
+            // only WHEN will be asynchronous!!!
+            .WHEN(userClicksOnDocument)
+
+                // ANDs after when will be applied after the callback
+                // has been invoked provided in the WHEN method.
+                // Preference: not using AND after WHEN
+                .AND(addingNumberToObjectValue, 3)
+                .AND(printObjectValueValue)
+
+            .THEN(logArguments)
+                .AND(addingNumberToObjectValue, 4)
+                .AND(printObjectValueValue);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
