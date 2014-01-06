@@ -1,4 +1,5 @@
 (function (root, slice) {
+    "use strict";
 
     var
         isFunction = function (arg) {
@@ -10,9 +11,7 @@
                 _block = function (func) {
                     var args = slice.call(arguments, 1);
                     var array = [_current].concat(args);
-
                     _current = (func.apply(this, array) || _current);
-
                     return this;
                 };
 
@@ -39,6 +38,4 @@
         root.bdd = bdd;
     }
 
-}(function () {
-    return this;
-}(), Array.prototype.slice));
+}(this, Array.prototype.slice));
