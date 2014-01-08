@@ -1,6 +1,6 @@
 {
   "name": "laughingwookiejs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/ottopecz/laughingwookiejs",
   "description": "Simple tool for behaviour driven unit testing in javascript",
   "main": "laughingwookie.js",
