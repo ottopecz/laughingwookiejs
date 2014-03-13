@@ -10,7 +10,7 @@ Example usage
 ```
 bdd()
     .GIVEN(aControllerType)
-      .AND(microIsDataInDOM)
+      .AND(microDataIsInDOM)
     .WHEN(anInstanceIsCreated)
     .THEN(parsedDataEntersTheModel)
       .AND(aViewGetsCreated);
