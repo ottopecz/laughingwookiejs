@@ -31,7 +31,7 @@ var aControllerType = function () {
     parsedDataEntersTheModel = function (givenAfterWhen) {
         var contr = givenAfterWhen;
         
-        assert.strictEqual(contr.model.get('micro'), $('#controlled-dom').attr('data-micro'), "The microdata in the DOM         enters the model.")
+        assert.strictEqual(contr.model.get('micro'), $('#controlled-dom').attr('data-micro'), "The microdata in the DOM enters the model.")
     },
     aViewGetsCreated = function (givenAfterWhen) {
         var contr = givenAfterWhen;
