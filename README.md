@@ -7,7 +7,7 @@ Simple chaining tool for behaviour driven unit-testing in JavaScript. It can be 
 
 Example usage
 -------------
-`bdd()
+```bdd()
     .GIVEN(aControllerType)
       .AND(microIsDataInDOM)
     .WHEN(anInstanceIsCreated)
@@ -37,4 +37,4 @@ var aControllerType = function () {
         
         assert.ok(contr.view, "The controller has a view key");
         assert.ok(contr.view instanceOf ViewConstructor, "The view is an instance of the View constructor");
-    };`
+    };```
